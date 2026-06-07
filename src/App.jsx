@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { supabase } from './supabaseClient';
 
-const circleId = 1;
+const circleId = '85cca372-2e0f-4514-8b22-a5271f64ab3d';
 const defaultCircle = {
   name: 'Santos family circle',
   activeMembers: 9,
@@ -137,9 +137,10 @@ function App() {
 
     try {
       // Explicitly set redirect so the magic link points back to this app path
-      const path = window.location.pathname.endsWith('/') ? window.location.pathname : `${window.location.pathname}/`;
-      const redirectTo = `${window.location.origin}${path}`;
-      const res = await supabase.auth.signInWithOtp({ email }, { options: { emailRedirectTo: redirectTo } });
+        const redirectTo = "https://kalvitree.github.io/MyRoots/";
+      console.log("redirectTo:", redirectTo);
+      const res = await supabase.auth.signInWithOtp({ email, options: { emailRedirectTo: redirectTo } });
+      //const res = await supabase.auth.signInWithOtp({ email }, { options: { emailRedirectTo: redirectTo } });
       // Log response to help diagnose invalid-path issues
       // eslint-disable-next-line no-console
       console.debug('signInWithOtp response', res);
